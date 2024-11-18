@@ -108,3 +108,7 @@ The token is validated on each request, ensuring secure access to APIs without r
 ## Git repo
 
 https://github.com/RameshLgg3/scalable-services-assignment
+
+## API Documentation
+
+https://documenter.getpostman.com/view/37944880/2sAYBREtTU
