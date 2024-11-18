@@ -10,13 +10,6 @@
 -   [Customer Service](./customers-service)
 -   [Restaurant Service](./restaurant-service)
 
-# Design and Development of an API product for a Food Delivery System
-
-## Objective
-
-Design, develop, and deploy an API product for a Food Delivery System that allows customers to browse restaurants and menus, place orders, track deliveries, and manage accounts. Restaurants can manage their menus and orders, while delivery personnel can accept and track deliveries. Administrators can manage the platform’s users and orders. The assignment emphasizes secure design, user roles, data validation, and proper documentation.
-Problem Context: You are tasked with creating a backend API for a food delivery platform. The platform will have different users, including customers, restaurant owners, delivery personnel, and administrators, each with specific actions they can perform. The API will allow customers to place orders, restaurants to manage menus, delivery personnel to handle deliveries, and administrators to oversee the system.
-
 ## Assignment:
 
 1. Create a Microservices based application with 3 to 4 microservices. Each service should be maintained as a separate code repository so that it can be developed, deployed, and tested independently.
