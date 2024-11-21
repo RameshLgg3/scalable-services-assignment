@@ -34,7 +34,8 @@ class OrderController {
     async getAllOrders(req, res) {
         try {
             const user_id = req.user.id;
-            const orders = await orderService.getAllOrders(user_id);
+            const { status } = req.query;
+            const orders = await orderService.getAllOrders(user_id, status);
             res.json({ status: 200, message: "Success", data: orders });
         } catch (error) {
             res.status(500).json({ message: "Internal Server Error" });
@@ -43,9 +44,10 @@ class OrderController {
 
     async getOrderById(req, res) {
         const { id } = req.params;
+        const user_id = req.user.id;
 
         try {
-            const order = await orderService.getOrderById(id);
+            const order = await orderService.getOrderById(id, user_id);
             res.json({ status: 200, message: "Success", data: order });
         } catch (error) {
             res.status(404).json({ message: "Order not found" });
@@ -55,13 +57,14 @@ class OrderController {
     async updateOrder(req, res) {
         const { id } = req.params;
         const { status, delivery_status } = req.body;
+        const user_id = req.user.id;
 
         if (status === undefined && delivery_status === undefined) {
             return res.status(400).json({ message: "No fields to update" });
         }
 
         try {
-            const updatedOrder = await orderService.updateOrder(id, {
+            const updatedOrder = await orderService.updateOrder(id, user_id, {
                 ...(status !== undefined && { status }),
                 ...(delivery_status !== undefined && { delivery_status }),
             });

@@ -20,18 +20,18 @@ class OrderService {
         return orderRepository.createOrderItems(orderMenuEntries);
     }
 
-    async getAllOrders(user_id) {
-        return orderRepository.getAllOrders(user_id);
+    async getAllOrders(user_id, status) {
+        return orderRepository.getAllOrders(user_id, status);
     }
 
-    async getOrderById(id) {
-        const order = await orderRepository.getOrderById(id);
+    async getOrderById(id, user_id) {
+        const order = await orderRepository.getOrderById(id, user_id);
         if (!order) throw new Error("Order not found");
         return order;
     }
 
-    async updateOrder(id, data) {
-        return orderRepository.updateOrder(id, data);
+    async updateOrder(id, user_id, data) {
+        return orderRepository.updateOrder(id, user_id, data);
     }
 
     async getOrderByOrderNumber(order_number) {

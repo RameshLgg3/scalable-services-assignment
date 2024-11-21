@@ -25,13 +25,13 @@ class OrderRepository {
         return Order.findMany(filter);
     }
 
-    async getOrderById(id) {
-        return Order.findUnique({ where: { id: parseInt(id) } });
+    async getOrderById(id, user_id) {
+        return Order.findUnique({ where: { id: parseInt(id), user_id } });
     }
 
-    async updateOrder(id, updateData) {
+    async updateOrder(id, user_id, updateData) {
         return Order.update({
-            where: { id: parseInt(id) },
+            where: { id: parseInt(id), user_id },
             data: updateData,
         });
     }
@@ -47,20 +47,20 @@ class OrderRepository {
         return Address.create({ data });
     }
 
-    async getAllAddresses() {
-        return Address.findMany();
+    async getAllAddresses(customer_id) {
+        return Address.findMany({ where: { customer_id } });
     }
 
-    async getAddressById(id) {
-        return Address.findUnique({ where: { id } });
+    async getAddressById(id, customer_id) {
+        return Address.findUnique({ where: { id, customer_id } });
     }
 
-    async updateAddress(id, data) {
-        return Address.update({ where: { id }, data });
+    async updateAddress(id, customer_id, data) {
+        return Address.update({ where: { id, customer_id }, data });
     }
 
-    async deleteAddress(id) {
-        return Address.delete({ where: { id } });
+    async deleteAddress(id, customer_id) {
+        return Address.delete({ where: { id, customer_id } });
     }
 }
 
