@@ -1,4 +1,5 @@
 const restaurantService = require("./service");
+const orderService = require("./orderService");
 
 // Controller function to create a restaurant
 const createRestaurant = async (req, res) => {
@@ -116,6 +117,59 @@ const updateRestaurant = async (req, res) => {
     }
 };
 
+const getAllOrders = async (req, res) => {
+    try {
+        const token = req.headers.authorization;
+        if (!token) {
+            return res
+                .status(401)
+                .json({ message: "Access Denied: No Token Provided" });
+        }
+        const orders = await orderService.getAllOrders(token);
+        res.status(200).json(orders);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error fetching orders: " + error,
+        });
+    }
+};
+
+const getOrderById = async (req, res) => {
+    try {
+        const token = req.headers.authorization;
+        const { id } = req.params;
+        if (!token) {
+            return res
+                .status(401)
+                .json({ message: "Access Denied: No Token Provided" });
+        }
+        const orders = await orderService.getOrderById(id, token);
+        res.status(200).json(orders);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error fetching orders: " + error,
+        });
+    }
+};
+
+const updateOrderStatus = async (req, res) => {
+    try {
+        const token = req.headers.authorization;
+        const { id } = req.params;
+        if (!token) {
+            return res
+                .status(401)
+                .json({ message: "Access Denied: No Token Provided" });
+        }
+        const orders = await orderService.updateOrderStatus(id, token);
+        res.status(200).json(orders);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error fetching orders: " + error,
+        });
+    }
+};
+
 module.exports = {
     createRestaurant,
     addFoodItems,
@@ -125,4 +179,7 @@ module.exports = {
     getFoodItemsBySearch,
     getRestaurantsBySearch,
     updateRestaurant,
+    getAllOrders,
+    getOrderById,
+    updateOrderStatus,
 };

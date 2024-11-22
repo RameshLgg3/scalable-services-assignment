@@ -56,7 +56,7 @@ class OrderController {
 
     async updateOrder(req, res) {
         const { id } = req.params;
-        const { status, delivery_status } = req.body;
+        const { status } = req.body;
         const user_id = req.user.id;
 
         if (status === undefined && delivery_status === undefined) {
@@ -66,7 +66,6 @@ class OrderController {
         try {
             const updatedOrder = await orderService.updateOrder(id, user_id, {
                 ...(status !== undefined && { status }),
-                ...(delivery_status !== undefined && { delivery_status }),
             });
             res.json(updatedOrder);
         } catch (error) {
