@@ -9,6 +9,7 @@
 -   [Auth Service](./auth-service)
 -   [Customer Service](./customers-service)
 -   [Restaurant Service](./restaurant-service)
+-   [Order Service](./order-service)
 
 ## Assignment:
 
