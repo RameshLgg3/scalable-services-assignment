@@ -111,6 +111,7 @@ The token is validated on each request, ensuring secure access to APIs without r
 
 ### Technologies Used
 
+-   **Node.js**: For building the backend microservices.
 -   **Express.js**: For building RESTful APIs.
 -   **Axios**: For making HTTP requests between services.
 
