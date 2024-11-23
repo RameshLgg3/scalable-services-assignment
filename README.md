@@ -102,6 +102,22 @@ The token is validated on each request, ensuring secure access to APIs without r
     Prisma provides a layer of abstraction over the PostgreSQL database, ensuring safe and efficient query execution.
     Access to the database is secured using strict connection policies and credentials management.
 
+## Inter-Service Communication
+
+-   **Implemented REST-based synchronous communication** between:
+    -   **Customer Service** and **Order Service**
+    -   **Restaurant Service** and **Order Service**
+    -   **Customer Service** and **Restaurant Service**
+
+### Technologies Used
+
+-   **Express.js**: For building RESTful APIs.
+-   **Axios**: For making HTTP requests between services.
+
+This communication setup ensures efficient and seamless interaction between the microservices while maintaining modularity and scalability.
+
+-   **App demo:** [Video Link]()
+
 ## Demo video url
 
 -   **App demo:** [Video Link]()
