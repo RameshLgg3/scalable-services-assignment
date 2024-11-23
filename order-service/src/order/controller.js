@@ -1,45 +1,63 @@
 // src/customer/controller.js
-const customerService = require("./service");
+const orderService = require("./service");
 const restaurantService = require("./restaurantService");
-const orderService = require("./orderService");
 
 class OrderController {
     async createOrder(req, res) {
+        const order_number = `OR${Date.now()}`;
+        const status = "Pending";
+        const delivery_status = "Pending";
+        const { customer_id, restaurant_id, amount, order_items } = req.body;
+
         try {
-            const token = req.headers.authorization;
-            const orderData = req.body;
-            const enrichedOrderData = {
-                ...orderData,
-                customer_id: req.user.id,
-            };
-            if (!token) {
-                return res
-                    .status(401)
-                    .json({ message: "Access Denied: No Token Provided" });
-            }
-            const orders = await orderService.createOrder(
-                token,
-                enrichedOrderData
-            );
-            res.status(200).json(orders);
-        } catch (error) {
-            res.status(500).json({
-                message: "Error fetching orders: " + error,
+            const order = await orderService.createOrder({
+                customer_id,
+                restaurant_id,
+                order_number,
+                amount,
+                status,
+                delivery_status,
             });
+
+            await orderService.addOrderItems(
+                restaurant_id,
+                order.order_number,
+                order_items
+            );
+
+            res.status(201).json({
+                status: 201,
+                message: "Order has been created.",
+                data: order,
+            });
+        } catch (error) {
+            res.status(500).json({ message: "Error creating order", error });
         }
     }
 
     async getAllOrders(req, res) {
         try {
-            const customer_id = req.user.id;
-            const token = req.headers.authorization;
+            const orders = await orderService.getAllOrders();
+            res.json({ status: 200, message: "Success", data: orders });
+        } catch (error) {
+            res.status(500).json({ message: "Internal Server Error" });
+        }
+    }
 
-            if (!token) {
-                return res
-                    .status(401)
-                    .json({ message: "Access Denied: No Token Provided" });
-            }
-            const orders = await orderService.getAllOrders(token, customer_id);
+    async getAllOrdersByCustomer(req, res) {
+        try {
+            const { id } = req.params;
+            const orders = await orderService.getAllOrdersByCustomer(id);
+            res.json({ status: 200, message: "Success", data: orders });
+        } catch (error) {
+            res.status(500).json({ message: "Internal Server Error" });
+        }
+    }
+
+    async getAllOrdersByRestaurant(req, res) {
+        try {
+            const { id } = req.params;
+            const orders = await orderService.getAllOrdersByRestaurant(id);
             res.json({ status: 200, message: "Success", data: orders });
         } catch (error) {
             res.status(500).json({ message: "Internal Server Error" });
@@ -48,9 +66,8 @@ class OrderController {
 
     async getOrderById(req, res) {
         const { id } = req.params;
-        const token = req.headers.authorization;
         try {
-            const order = await orderService.getOrderById(token, id);
+            const order = await orderService.getOrderById(id);
             res.json({ status: 200, message: "Success", data: order });
         } catch (error) {
             res.status(404).json({ message: "Order not found" });
@@ -59,15 +76,16 @@ class OrderController {
 
     async updateOrder(req, res) {
         const { id } = req.params;
-        const updateData = req.body;
-        const token = req.headers.authorization;
+        const { status } = req.body;
+
+        if (status === undefined && delivery_status === undefined) {
+            return res.status(400).json({ message: "No fields to update" });
+        }
 
         try {
-            const updatedOrder = await orderService.updateOrder(
-                token,
-                id,
-                updateData
-            );
+            const updatedOrder = await orderService.updateOrder(id, {
+                ...(status !== undefined && { status }),
+            });
             res.json(updatedOrder);
         } catch (error) {
             res.status(404).json({ message: "Order not found" });
@@ -153,7 +171,7 @@ class OrderController {
 
         try {
             // Get the existing order by order_number
-            const existingOrder = await customerService.getOrderByOrderNumber(
+            const existingOrder = await orderService.getOrderByOrderNumber(
                 order_number
             );
 
@@ -173,10 +191,10 @@ class OrderController {
             };
 
             // Create a new order
-            const newOrder = await customerService.createOrder(newOrderData);
+            const newOrder = await orderService.createOrder(newOrderData);
 
             // Recreate the order items
-            await customerService.addOrderItems(
+            await orderService.addOrderItems(
                 newOrder.order_number,
                 existingOrder.order_items
             );

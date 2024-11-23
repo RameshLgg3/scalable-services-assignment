@@ -1,0 +1,37 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Set this in your .env file
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model order {
+  id             Int      @id @default(autoincrement())
+  customer_id    Int
+  restaurant_id   Int
+  order_number   String   @unique
+  amount         Float
+  status         String
+  delivery_status String
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+
+  // Add additional fields or relationships as needed
+  orders_menu      orders_menu[]
+}
+
+model orders_menu {
+  id              Int      @id @default(autoincrement())
+  order_number    String
+  order           order    @relation(fields: [order_number], references: [order_number])
+  restaurant_id   Int
+  menu_item_id    Int
+  quantity        Int
+  price           Float
+
+  @@unique([order_number, restaurant_id, menu_item_id]) // Composite key to ensure unique combinations
+}
+
+

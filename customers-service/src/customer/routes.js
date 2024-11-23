@@ -10,7 +10,6 @@ const router = express.Router();
 router.use(authenticateToken);
 
 // Apply the role-based access control for the CUSTOMER role to all order-related routes
-router.use(authorizeRoles("CUSTOMER", "RESTAURANT"));
 
 // Hello World endpoint (accessible by any authenticated user)
 router.get("/customers", (req, res) => {
@@ -18,14 +17,22 @@ router.get("/customers", (req, res) => {
 });
 
 // Create an order
-router.post("/orders", orderController.createOrder);
+router.post("/orders", authorizeRoles("CUSTOMER"), orderController.createOrder);
 
 // Get all orders
-router.get("/orders", orderController.getAllOrders);
+router.get("/orders", authorizeRoles("CUSTOMER"), orderController.getAllOrders);
+router.get(
+    "/orders/:id",
+    authorizeRoles("CUSTOMER", "RESTAURANT"),
+    orderController.getOrderById
+);
+router.put(
+    "/orders/:id",
+    authorizeRoles("CUSTOMER", "RESTAURANT"),
+    orderController.updateOrder
+);
 
-// Get order by ID
-router.get("/orders/:id", orderController.getOrderById);
-router.put("/orders/:id", orderController.updateOrder);
+router.use(authorizeRoles("CUSTOMER"));
 
 router.get("/restaurants", orderController.fetchRestaurants);
 router.get("/restaurants/search", orderController.searchRestaurants);
