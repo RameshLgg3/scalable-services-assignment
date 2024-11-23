@@ -120,12 +120,13 @@ const updateRestaurant = async (req, res) => {
 const getAllOrders = async (req, res) => {
     try {
         const token = req.headers.authorization;
+        const { id } = req.params;
         if (!token) {
             return res
                 .status(401)
                 .json({ message: "Access Denied: No Token Provided" });
         }
-        const orders = await orderService.getAllOrders(token);
+        const orders = await orderService.getAllOrders(token, id);
         res.status(200).json(orders);
     } catch (error) {
         res.status(500).json({

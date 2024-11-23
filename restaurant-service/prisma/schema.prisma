@@ -15,6 +15,7 @@ datasource db {
 
 model restaurant {
   id           Int         @id @default(autoincrement())
+  owner_id     Int         @default(1)
   name         String
   location     String
   phone        String

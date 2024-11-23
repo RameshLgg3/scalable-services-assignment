@@ -68,7 +68,7 @@ restaurantRoutes.post("/restaurants/menu", addFoodItems);
 
 restaurantRoutes.put("/restaurants/:id", updateRestaurant);
 
-restaurantRoutes.get("/orders", getAllOrders);
+restaurantRoutes.get("/orders/restaurants/:id", getAllOrders);
 restaurantRoutes.get("/orders/:id", getOrderById);
 restaurantRoutes.put("/orders/:id", updateOrderStatus);
 
