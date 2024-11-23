@@ -25,6 +25,54 @@
 2. Create the first demo video to explain your microservices, the database, and communication between the services (for points 1,2, and 3)
 3. Create the second video to show a demo about security and deployment (for points 4 and 5)
 
+# Food Delivery App - Microservices Architecture
+
+## Overview
+
+This project implements a microservices architecture for a **Food Delivery App**, where each service is responsible for a specific domain within the application. The architecture is designed for scalability, modularity, and ease of deployment. The system consists of the following key services:
+
+---
+
+## Services
+
+### 1. **Auth Service**
+
+-   **Responsibility**: Handles user authentication and authorization, ensuring secure access and session management.
+-   **Functionality**:
+    -   User login and registration
+    -   JWT token generation for session management
+    -   Role-based access control (e.g., customers can place orders, restaurant owners can manage menus)
+-   **Technology**: Node.js, Express.js, JWT
+
+### 2. **Customer Service**
+
+-   **Responsibility**: Manages customer-related functionalities such as profile management, restaurant discovery, and order placement.
+-   **Functionality**:
+    -   View available restaurants and menus
+    -   Place orders
+    -   Track order status
+    -   Manage customer profiles and address details
+-   **Technology**: Node.js, Express.js, PostgreSQL
+
+### 3. **Restaurant Service**
+
+-   **Responsibility**: Manages restaurant details, including menu management and order processing.
+-   **Functionality**:
+    -   Add and update restaurant details (name, location)
+    -   Manage food menu (add, update, remove items)
+    -   Track customer orders
+    -   Handle restaurant-specific data such as pricing and inventory
+-   **Technology**: Node.js, Express.js, PostgreSQL
+
+### 4. **Order Service**
+
+-   **Responsibility**: Manages the entire order lifecycle, from creation to status updates.
+-   **Functionality**:
+    -   Create and manage orders
+    -   Track order status (pending, in-progress, delivered)
+    -   Maintain order history
+-   **Technology**: Node.js, Express.js, PostgreSQL
+
 ## Tech Stack
 
 ### 1. **Node.js**
