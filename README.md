@@ -112,3 +112,7 @@ https://github.com/RameshLgg3/scalable-services-assignment
 ## API Documentation
 
 https://documenter.getpostman.com/view/37944880/2sAYBREtTW
+
+## Architecture
+
+![High level architecture](assets/food-delivery-app.png)
