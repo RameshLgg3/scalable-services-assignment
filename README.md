@@ -21,9 +21,9 @@
 
 ## Submission details:
 
-a) Submit elaborate documentation with group details, contribution by each group member, brief application description, the architecture of your application, steps, and screenshot for each of the above-mentioned tasks. Also, provide a link to the GitHub repositories in the document.
-b) Create the first demo video to explain your microservices, the database, and communication between the services (for points 1,2, and 3)
-c) Create the second video to show a demo about security and deployment (for points 4 and 5)
+1. Submit elaborate documentation with group details, contribution by each group member, brief application description, the architecture of your application, steps, and screenshot for each of the above-mentioned tasks. Also, provide a link to the GitHub repositories in the document.
+2. Create the first demo video to explain your microservices, the database, and communication between the services (for points 1,2, and 3)
+3. Create the second video to show a demo about security and deployment (for points 4 and 5)
 
 ## Tech Stack
 
