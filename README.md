@@ -6,10 +6,10 @@
 
 ## Services
 
--   [Auth Service](./auth-service)
--   [Customer Service](./customers-service)
--   [Restaurant Service](./restaurant-service)
--   [Order Service](./order-service)
+-   [Auth Service](./auth-service) - Auth database
+-   [Customer Service](./customers-service) - Customer database
+-   [Restaurant Service](./restaurant-service) - Restaurant database
+-   [Order Service](./order-service) - Order database
 
 ## Assignment:
 
@@ -187,7 +187,8 @@ This communication setup ensures efficient and seamless interaction between the 
 
 ## Demo video url
 
--   **App demo:** [Video Link]()
+-   **App demo:** [Video1 Link](https://drive.google.com/file/d/1X0Am_ThkF68j8Ne38D6tNCRu16N46pOP/view)
+-   **Security:** [Video2 Link](https://drive.google.com/file/d/1sBSTtS1QoRHO19O6zsFOlAuBGzsNBBsd/view)
 
 ## Git repo
 
