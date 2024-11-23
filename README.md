@@ -118,8 +118,6 @@ The token is validated on each request, ensuring secure access to APIs without r
 
 This communication setup ensures efficient and seamless interaction between the microservices while maintaining modularity and scalability.
 
--   **App demo:** [Video Link]()
-
 ## Demo video url
 
 -   **App demo:** [Video Link]()
