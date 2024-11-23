@@ -27,9 +27,26 @@
 
 ## Tech Stack
 
--   Node.js
--   PostgreSQL
--   Postman
+### 1. **Node.js**
+
+-   **Why Used**:
+    -   **Efficient & Lightweight**: Node.js provides a fast, non-blocking, event-driven model, making it highly efficient for handling concurrent requests, a key feature for microservices.
+    -   **Scalable**: Node.js is designed to handle large-scale applications with ease, enabling high performance even under heavy loads.
+    -   **Rich Ecosystem**: It has a vast ecosystem of libraries and frameworks (like Express.js) that speed up development and help create modular applications.
+
+### 2. **PostgreSQL**
+
+-   **Why Used**:
+    -   **Reliability & Scalability**: PostgreSQL is a highly reliable relational database known for its ACID compliance and scalability, making it ideal for handling transactional data in microservices like orders, users, and products.
+    -   **Flexibility**: It supports both relational and semi-structured data (through JSON/JSONB), which adds flexibility in storing various types of data.
+    -   **Advanced Features**: PostgreSQL’s support for advanced data types, indexing, and full-text search ensures that the database can handle complex queries efficiently.
+
+### 3. **Postman**
+
+-   **Why Used**:
+    -   **API Testing**: Postman allows for easy and thorough testing of RESTful APIs, helping developers test, debug, and document their services.
+    -   **Collaboration**: Postman enables teams to share collections of API requests, making collaboration simpler during development and testing.
+    -   **Environment Management**: It allows developers to manage different environments (e.g., development, staging, production) for their APIs, which is crucial for testing microservices in different stages of deployment.
 
 ## Design Choices, Role-Based Access, and Data Security
 
