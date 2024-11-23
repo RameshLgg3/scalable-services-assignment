@@ -105,15 +105,16 @@ The token is validated on each request, ensuring secure access to APIs without r
 ## Inter-Service Communication
 
 -   **Implemented REST-based synchronous communication** between:
+
     -   **Customer Service** and **Order Service**
     -   **Restaurant Service** and **Order Service**
     -   **Customer Service** and **Restaurant Service**
 
-### Technologies Used
+-   **Technologies Used**
 
--   **Node.js**: For building the backend microservices.
--   **Express.js**: For building RESTful APIs.
--   **Axios**: For making HTTP requests between services.
+    -   **Node.js**: For building the backend microservices.
+    -   **Express.js**: For building RESTful APIs.
+    -   **Axios**: For making HTTP requests between services.
 
 This communication setup ensures efficient and seamless interaction between the microservices while maintaining modularity and scalability.
 
