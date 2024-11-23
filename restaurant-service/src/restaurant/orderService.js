@@ -30,24 +30,25 @@ const getOrderById = async (id, token) => {
         return response.data;
     } catch (error) {
         console.error(
-            "Error fetching orders from restaurant-service:",
+            "Error fetching orders from order-service:",
             error.message
         );
         throw new Error("Could not fetch orders");
     }
 };
 
-const updateOrderStatus = async (id, token) => {
+const updateOrderStatus = async (id, token, updateData) => {
     try {
-        const response = await axios.put(`${ORDER_SERVICE_URL}/orders/${id}`, {
-            headers: { Authorization: token },
-        });
+        const response = await axios.put(
+            `${ORDER_SERVICE_URL}/orders/${id}`,
+            updateData,
+            {
+                headers: { Authorization: token },
+            }
+        );
         return response.data;
     } catch (error) {
-        console.error(
-            "Error fetching orders from restaurant-service:",
-            error.message
-        );
+        console.error("Error order  from order-service:", error.message);
         throw new Error("Could not fetch orders");
     }
 };

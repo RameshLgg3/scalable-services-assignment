@@ -156,13 +156,18 @@ const getOrderById = async (req, res) => {
 const updateOrderStatus = async (req, res) => {
     try {
         const token = req.headers.authorization;
+        const updateData = req.body;
         const { id } = req.params;
         if (!token) {
             return res
                 .status(401)
                 .json({ message: "Access Denied: No Token Provided" });
         }
-        const orders = await orderService.updateOrderStatus(id, token);
+        const orders = await orderService.updateOrderStatus(
+            id,
+            token,
+            updateData
+        );
         res.status(200).json(orders);
     } catch (error) {
         res.status(500).json({
